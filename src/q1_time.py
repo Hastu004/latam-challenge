@@ -25,7 +25,6 @@ def extract_usernames(df: pd.DataFrame) -> pd.DataFrame:
 def get_top_users_per_date(df: pd.DataFrame, top_dates: List[datetime.date]) -> List[str]:
     top_users = []
     for date in top_dates:
-        # Obtener la lista de usuarios para la fecha específica y contar las veces que aparece
         top_user = df.loc[df['date'] == date, 'username'].value_counts(ascending=False).index.to_list()
         top_users.append(top_user[0] if top_user else None)
     return top_users
@@ -38,7 +37,6 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
     top_dates = get_top_dates(df)
     top_users = get_top_users_per_date(df, top_dates)
     
-    # Return a list of tuples containing dates and their corresponding top users
     return [(top_dates[i], top_users[i]) for i in range(len(top_dates))]
 
 
